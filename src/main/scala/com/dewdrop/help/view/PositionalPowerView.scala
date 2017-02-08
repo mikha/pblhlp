@@ -84,7 +84,8 @@ case class OutfieldPositionalPowerView(defPower: Int, midPower: Int, attPower: I
     posPower("AM", AM(defPower, midPower, attPower, sum)),
     posPower("xW", XW(defPower, midPower, attPower, sum)),
     posPower("xF", XF(defPower, midPower, attPower, sum)),
-    posPower("ST", ST(defPower, midPower, attPower, sum))
+    posPower("ST", ST(defPower, midPower, attPower, sum)),
+    posPower("F**", FNew(defPower, midPower, attPower, sum))
   )
 }
 case class KeeperPositionalPowerView(gkPower: Int) extends PositionalPowerView {
@@ -106,6 +107,7 @@ object PositionalPower {
   def XW(d: Int, m: Int, a: Int, sum: Int): Double = roundUp((math.min(d, sum * 0.10) + math.min(m, sum * 0.45) + math.min(a, sum * 0.45)) * 1.15)
   def XF(d: Int, m: Int, a: Int, sum: Int): Double = roundUp((math.min(m, sum * 0.20) + math.min(a, sum * 0.80)) * 1.22)
   def ST(d: Int, m: Int, a: Int, sum: Int): Double = roundUp(math.min(a, sum * 1.00) * 1.6)
+  def FNew(d: Int, m: Int, a: Int, sum: Int): Double = roundUp(math.min(m, sum * 0.16) + math.min(a, sum * 0.84) * 1.42)
   def withFormFiza(base: Double, form: Int, fiza: Int, age: Int): Double = {
     val x = 0.284 * age * age - 8.47 * age + 49
     val formNorm = Math.max(83, if (form < 100) form.toDouble * (100 - x) / 100 + x else form.toDouble)
