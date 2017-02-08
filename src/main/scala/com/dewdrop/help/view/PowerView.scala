@@ -31,7 +31,9 @@ object PowerView extends View {
         "выделяйте цифры для ", strong("нижней границы уровня"),
         " и копируйте в поле ниже",
         i(" (одно число считается как вратарь)")),
-      p("кроме того можно просто вписать значения составляющих через плюс, например 11 + 31 + 25", ":"),
+      p("кроме того можно просто вписать значения составляющих через ",
+        i(title := "любые нечисловые символы", "разделитель"),
+        ", например 11-31-25", ":"),
       div(`class` := "input-group",
         span(`class` := "input-group-btn",
           button(`type` := "button", `class` := "btn btn-primary", onclick := clearAll _, "Очистить")
@@ -73,7 +75,7 @@ object PowerView extends View {
 
 object OutfieldExp {
   def unapply(arg: String): Option[(Int, Int, Int)] = {
-    arg.replace(" ", "").replace("+", "\t").trim.split("\t") match {
+    arg.trim.split("\\D").map(_.trim).filterNot(_.isEmpty) match {
       case Array(one, two, three) => Try((one.toInt, two.toInt, three.toInt)).toOption
       case _ => None
     }

@@ -9,7 +9,7 @@ import scalatags.JsDom.all._
 
 @JSExport
 object HelpApp extends JSApp {
-  private val VERSION = "0.4"
+  private val VERSION = "0.5"
   private val view = div(`class` := "container-fluid",
     h1("пбл-утилиты", " ", small(VERSION)),
     TabsView(Map("Расклад" -> PowerView, "..." -> YourIdeasView)).view()
