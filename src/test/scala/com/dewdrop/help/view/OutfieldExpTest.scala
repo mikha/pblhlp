@@ -10,6 +10,7 @@ class OutfieldExpTest extends WordSpec with Matchers {
       check("21\t22\t23\t  ", (21, 22, 23))
       check("5+10+15", (5, 10, 15))
       check("3 - 12 - 25", (3, 12, 25))
+      check("6 974\t39 568\t6 250", (6974, 39568, 6250))
     }
   }
   def check(input: String, expectation: (Int, Int, Int)): Unit = {

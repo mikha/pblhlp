@@ -75,9 +75,12 @@ object PowerView extends View {
 
 object OutfieldExp {
   def unapply(arg: String): Option[(Int, Int, Int)] = {
-    arg.trim.split("\\D").map(_.trim).filterNot(_.isEmpty) match {
-      case Array(one, two, three) => Try((one.toInt, two.toInt, three.toInt)).toOption
-      case _ => None
+    extract(arg.trim).orElse(extract(arg.replace(" ", "")))
+  }
+  private def extract(arg: String): Option[(Int, Int, Int)] = {
+    arg.split("\\D").map(_.trim).filterNot(_.isEmpty) match {
+      case Array(one, two, three) ⇒ Try((one.toInt, two.toInt, three.toInt)).toOption
+      case _ ⇒ None
     }
   }
 }
