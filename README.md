@@ -1,2 +1,2 @@
-# ПБЛ утилиты - http://pbl.do.am/util/
+# ПБЛ утилиты - https://mikha.github.io/util/
 ###### scala.js client-only single page
