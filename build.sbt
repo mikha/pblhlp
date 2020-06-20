@@ -2,20 +2,15 @@ enablePlugins(ScalaJSPlugin)
 
 name := "help"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.13.2"
 
-scalacOptions ++= Seq("-unchecked", "-deprecation","-feature")
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
 scalaJSStage in Global := FastOptStage
 
-skip in packageJSDependencies := false
+scalaJSUseMainModuleInitializer := true
 
-jsDependencies += RuntimeDOM
+mainClass in Compile := Some("com.dewdrop.help.HelpApp")
 
-persistLauncher in Compile := true
-
-persistLauncher in Test := false
-
-libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.5.5"
-libraryDependencies += "com.lihaoyi" %%% "scalarx" % "0.3.1"
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+libraryDependencies += "com.lihaoyi" %%% "scalatags" % "0.9.1"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0" % "test"
