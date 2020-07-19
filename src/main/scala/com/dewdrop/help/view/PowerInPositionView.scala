@@ -88,7 +88,7 @@ object PowerInPositionView {
   sealed abstract class PowerCalc(val d: BigDecimal,
                                   val m: BigDecimal,
                                   val a: BigDecimal,
-                                  k: BigDecimal) {
+                                  val k: BigDecimal) {
     def calc(p: PowerSplit): BigDecimal =
       (p.d.min(p.sum * d) + p.m.min(p.sum * m) + p.a.min(p.sum * a)) * k
   }
@@ -99,7 +99,10 @@ object PowerInPositionView {
   case object XM extends PowerCalc(d = 0.15, m = 0.70, a = 0.15, k = 1.3)
   case object AM extends PowerCalc(d = 0.10, m = 0.50, a = 0.40, k = 1.18)
   case object XW extends PowerCalc(d = 0.10, m = 0.45, a = 0.45, k = 1.15)
-  case object XF extends PowerCalc(d = 0.00, m = 0.16, a = 0.84, k = 1.42)
+  case object XF extends PowerCalc(d = 0.00, m = 0.16, a = 0.84, k = 1.42) {
+    override def calc(p: PowerSplit): BigDecimal =
+      p.d.min(p.sum * d) + p.m.min(p.sum * m) + p.a.min(p.sum * a) * k
+  }
 
   def withFormFiza(basePower: BigDecimal,
                    form: Int,

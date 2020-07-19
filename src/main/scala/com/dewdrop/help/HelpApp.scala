@@ -6,7 +6,7 @@ import org.scalajs.dom
 import scalatags.JsDom.all._
 
 object HelpApp {
-  private val VERSION = "0.8"
+  private val VERSION = "0.9"
   private val view = div(
     `class` := "container-fluid",
     h1("пбл-утилиты", " ", small(VERSION)),
